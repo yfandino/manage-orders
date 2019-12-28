@@ -1,22 +1,22 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getOrders } from '../../redux/actions'
+import Table from './Table'
 
-const List = ({ orders, getOrders }) => {
+const List = ({ orders, getOrders, title }) => {
   
   useEffect( () => {
     getOrders();
   }, []);
 
   return (
-    <React.Fragment>
-      <h2>Pedidos pendientes</h2>
-      <ul>
-        {orders && (orders.map( (order, i) => (
-          <li key={i}>{JSON.stringify(order)}</li>
-        )))}
-      </ul>
-    </React.Fragment>
+    orders && (
+      <Table 
+        title="Pedidos pendientes"
+        headers={['Código Nuuvola', 'Código', 'Marca', 'Modelo', 'Descripción', 'Cantidad', 'Fecha']} 
+        rows={orders} 
+      />
+    )
   )
 }
 

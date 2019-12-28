@@ -1,0 +1,87 @@
+/*Parent*/
+div.tl-table--container {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 3rem auto;
+}
+
+table.tl-table {
+  border-collapse: collapse;
+}
+
+/*Header*/
+/*Options*/
+div.tl-table--header-options {
+  display: flex;
+  padding: 0.8rem 1rem;
+  justify-content: space-between;
+  line-height: 1.5rem;
+}
+
+div.tl-table--header-options.items-selected {
+  background-color: #0C4160;
+  color: #fff;
+}
+
+div.tl-table--header-options.items-selected h2 {
+  font-size: small;
+  line-height: 1.5rem;
+}
+
+div.tl-table--header-options-icons span{
+  display: inline-block;
+  padding: 0 1rem;
+}
+
+div.tl-table--header-options-icons svg{
+  cursor: pointer;
+}
+
+/*Title row*/
+table.tl-table .tl-table--row-header th {
+  border-bottom: 1px solid #C7C7C7;
+  text-align: left;
+  color: #C7C7C7;
+  font-weight: 400;
+  padding: 0.8rem 0 0.4rem 0;
+}
+
+/*Body*/
+table.tl-table td {
+  border-bottom: 1px solid #C7C7C7;
+  text-align: left;
+  padding: 0.8rem 0;
+}
+
+table.tl-table tr.tl-table--row:hover {
+  background-color: dimgray;
+}
+
+/*Checkbox*/
+table.tl-table tr .tl-table--checkbox {
+  text-align: center;
+}
+
+.tl-table .tl-table--checkbox > input[type="checkbox"] {
+  display: none;
+}
+
+.tl-table .tl-table--checkbox > input[type="checkbox"]:checked + label {
+  background-color: #C7C7C7;
+  color: #fff;
+}
+
+.tl-table .tl-table--checkbox label {
+  background-color: #fff;
+  border: 1px solid transparent;
+  border-radius: 0.2em;
+  content: " ";
+  width: 1.2em;
+  height: 1.2em;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 0.1rem #000;
+  vertical-align: middle;
+}

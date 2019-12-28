@@ -6,7 +6,7 @@ const App = () => {
   return (
       <React.Fragment>
         <AddForm />
-        <List />
+        <List title="Piezas pedidas pendientes" />
       </React.Fragment>
   );
 }
