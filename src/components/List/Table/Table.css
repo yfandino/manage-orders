@@ -55,7 +55,7 @@ table.tl-table td {
 }
 
 table.tl-table tr.tl-table--row:hover {
-  background-color: dimgray;
+  background-color: #C7C7C7;
 }
 
 /*Checkbox*/
@@ -84,4 +84,5 @@ table.tl-table tr .tl-table--checkbox {
   align-items: center;
   box-shadow: 0 0 0.1rem #000;
   vertical-align: middle;
+  cursor: pointer;
 }

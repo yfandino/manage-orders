@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { FaCheck } from 'react-icons/fa'
-import './Table.css';
+import { FaCheck } from 'react-icons/fa';
 
 const CheckboxCell = ({ id, empty, onSelect, onDeselect }) => {
   const [checked, setChecked] = useState(false);
@@ -11,7 +10,7 @@ const CheckboxCell = ({ id, empty, onSelect, onDeselect }) => {
     else onDeselect(id)
   }
   
-  if (empty) return <td></td>;
+  if (empty) return <td className="tl-table--checkbox"></td>;
   
   return (
     <td className="tl-table--checkbox">

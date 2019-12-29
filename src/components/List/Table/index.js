@@ -1,48 +1,54 @@
 import React, { useState } from 'react';
-import { FaTrash, FaEdit } from 'react-icons/fa';
-import CheckboxCell from './CheckboxCell';
+import HeaderOptions from './components/HeaderOptions';
+import CheckboxCell from './components/CheckboxCell';
+import './Table.css';
 
-const Table = ( { title, headers, rows }) => {
+const Table = ( { title, headers, rows, onDelete }) => {
 
   const [rowsSelected, setRowsSelected] = useState([]);
   
-  const selecRows = (id) => {
-    setRowsSelected([...rowsSelected, id]);
+  const selectRows = (id) => {
+    setRowsSelected([...rowsSelected, rows.find(row => row.id === id)]);
   }
 
-  const deselecRows = (id) => {
-    let rows = rowsSelected.filter( rowId => rowId !== id);
+  const deselectRows = (id) => {
+    let rows = rowsSelected.filter( row => row.id !== id);
     setRowsSelected(rows);
+  }
+
+  const deleteRows = () => {
+    let ids = rowsSelected.map( row => row.id);
+    setRowsSelected([]);
+    onDelete(ids);
+  }
+
+  if (!rows.length) {
+    return (
+      <div className="tl-table--container">
+        <HeaderOptions title={title} rowCount={rowsSelected.length} onDelete={deleteRows} />
+        <div>No hay pedidos pendientes</div>
+      </div>
+    )
   }
 
   return (
     <div className="tl-table--container">
-      <div className={`tl-table--header-options ${rowsSelected.length ? 'items-selected': ""}`}>
-        <h2>{rowsSelected.length ? `${rowsSelected.length} items seleccionados` : title}</h2>
-        <div className="tl-table--header-options-icons">
-        { rowsSelected.length > 0 && (
-          <div>
-            <span><FaEdit /></span>
-            <span><FaTrash /></span>
-          </div>  
-        )}
-        </div>
-      </div>
+      <HeaderOptions title={title} rowCount={rowsSelected.length} onDelete={deleteRows} />
       <table className="tl-table">
         <thead>
           <tr className="tl-table--row-header">
             <CheckboxCell empty />
             {headers && (headers.map( header => (
-              <th key={header}>{header}</th>
+              <th key={header.key}>{header.name}</th>
             )))}
           </tr>
         </thead>
         <tbody>
           {rows && (rows.map( (row, i) => (
-            <tr className="tl-table--row" key={`row-${i}`}>
-              <CheckboxCell id={i} onSelect={selecRows} onDeselect={deselecRows}/>
-              {Object.keys(row).map( (key, j) => (
-                <td key={`cell-${i}-${j}`}>{row[key]}</td>
+            <tr className="tl-table--row" key={`row-${row.id}`}>
+              <CheckboxCell id={row.id} onSelect={selectRows} onDeselect={deselectRows} />
+              {headers.map( header => (
+                <td key={`cell-${header.key}-${i}`}>{row[header.key]}</td>
               ))}
             </tr>
           )))}
