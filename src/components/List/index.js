@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getOrders, deleteOrder } from '../../redux/actions'
-import Table from './Table'
+import { getOrders, deleteOrder } from '../../redux/actions';
+import Table from '../Table';
 
 const List = ({ orders, getOrders, deleteOrder }) => {
   
