@@ -1,5 +1,11 @@
-export const ADD_ORDER        = "ADD_ORDER";
-export const DELETE_ORDER     = "DELETE_ORDER";
-export const ORDERS_REQUESTED = "ORDERS_REQUESTED";
-export const ORDERS_LOADED    = "ORDERS_LOADED";
-export const API_ERRORED      = "API_ERRORED";
+export const ORDERS_REQUESTED        = "ORDERS_REQUESTED";
+export const ORDERS_LOADED           = "ORDERS_LOADED";
+export const API_ERRORED             = "API_ERRORED";
+
+export const PHONE_PARTS_TYPES = {
+  ADD_STORE: "ADD_TO_STORE",
+  ADD_DB: "ADD_DB",
+  DELETE_STORE: "DELETE_STORE",
+  DELETE_DB: "DELETE_DB",
+  INVALID_DATA: "INVALID_DATA"
+}

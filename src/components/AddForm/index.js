@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { addOrder } from '../../redux/actions'
+import { addPhonePart } from '../../redux/actions'
 import { brands, models } from './data';
 import './AddForm.css';
 
-const AddForm = ({ addOrder }) => {
+const AddForm = ({ addPhonePart }) => {
   const today = new Date();
   const tomorrow = new Date(today);
   tomorrow.setDate(tomorrow.getDate() + 1);
@@ -16,7 +16,8 @@ const AddForm = ({ addOrder }) => {
     model: "",
     description: "",
     qty: 1,
-    date: new Date(tomorrow).toISOString().slice(0,10)
+    date: new Date(tomorrow).toISOString().slice(0,10),
+    status: "pending"
   }
 
   const [state, setState] = useState(initState);
@@ -27,7 +28,7 @@ const AddForm = ({ addOrder }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    addOrder(state);
+    addPhonePart(state);
     setState(initState);
   }
 
@@ -86,7 +87,7 @@ const AddForm = ({ addOrder }) => {
 }
 
 const mapDispatchToProps = dispatch => {
-  return { addOrder: order => dispatch(addOrder(order)) }
+  return { addPhonePart: order => dispatch(addPhonePart(order)) }
 }
 
 export default connect(null, mapDispatchToProps)(AddForm);

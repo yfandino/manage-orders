@@ -1,4 +1,4 @@
-import { ADD_ORDER, DELETE_ORDER, ORDERS_LOADED } from '../constants';
+import { PHONE_PARTS_TYPES, ORDERS_LOADED } from '../constants';
 
 const initialState = {
   orders: []
@@ -11,11 +11,11 @@ function rootReducer (state = initialState, action) {
       return Object.assign({}, state, {
         orders: state.orders.concat(payload)
       });
-    case ADD_ORDER:
+    case PHONE_PARTS_TYPES.ADD_STORE:
       return Object.assign({}, state, {
         orders: [payload].concat(state.orders)
       });
-    case DELETE_ORDER:
+    case PHONE_PARTS_TYPES.DELETE_STORE:
       return Object.assign({}, state, {
         orders: state.orders.filter( order => !payload.includes(order.id))
       });

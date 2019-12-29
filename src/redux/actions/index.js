@@ -1,20 +1,20 @@
-import { ADD_ORDER, DELETE_ORDER, ORDERS_REQUESTED } from '../constants';
+import { PHONE_PARTS_TYPES, ORDERS_REQUESTED } from '../constants';
 
 // Action creators
-export function addOrder(payload) {
+export function addPhonePart(payload) {
   return {
-    type: ADD_ORDER,
+    type: PHONE_PARTS_TYPES.ADD_DB,
     payload
   }
 }
 
-export function deleteOrder(payload) {
+export function deletePhonePart(payload) {
   return {
-    type: DELETE_ORDER,
+    type: PHONE_PARTS_TYPES.DELETE_DB,
     payload
   }
 }
 
-export function getOrders() {
+export function getPendingParts() {
   return { type: ORDERS_REQUESTED };
 }

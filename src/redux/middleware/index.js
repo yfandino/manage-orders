@@ -1,10 +1,10 @@
-import { ADD_ORDER } from '../constants';
+import { PHONE_PARTS_TYPES } from '../constants';
 
 const validAddOrderDataMiddleWare = ({ getState, dispatch }) => next => action => {
       
-  if (action.type === ADD_ORDER) {
+  if (action.type === PHONE_PARTS_TYPES.ADD_DB) {
     let errors = validateData(action.payload);
-    if (errors.length) return dispatch({ type: 'INVALID_ORDER_DATA' });
+    if (errors.length) return dispatch({ type: PHONE_PARTS_TYPES.INVALID_DATA });
   }
 
   return next(action);

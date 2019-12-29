@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getOrders, deleteOrder } from '../../redux/actions';
+import { getPendingParts, deletePhonePart } from '../../redux/actions';
 import Table from '../Table';
 
-const List = ({ orders, getOrders, deleteOrder }) => {
+const List = ({ orders, getPendingParts, deletePhonePart }) => {
   
   useEffect( () => {
-    getOrders();
+    getPendingParts();
   }, []);
   
   const headers = [
@@ -25,7 +25,7 @@ const List = ({ orders, getOrders, deleteOrder }) => {
         title="Pedidos pendientes"
         headers={headers} 
         rows={orders}
-        onDelete={deleteOrder}
+        onDelete={deletePhonePart}
       />
     )
   )
@@ -35,4 +35,4 @@ const mapToStateToProps = state => {
   return { orders: state.orders };
 }
 
-export default connect(mapToStateToProps, { getOrders, deleteOrder })(List);
+export default connect(mapToStateToProps, { getPendingParts, deletePhonePart })(List);
