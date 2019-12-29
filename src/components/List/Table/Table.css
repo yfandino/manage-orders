@@ -14,7 +14,7 @@ table.tl-table {
 /*Options*/
 div.tl-table--header-options {
   display: flex;
-  padding: 0.8rem 1rem;
+  padding: 0.8rem 1rem 0.8rem 0;
   justify-content: space-between;
   line-height: 1.5rem;
 }
@@ -24,9 +24,17 @@ div.tl-table--header-options.items-selected {
   color: #fff;
 }
 
+div.tl-table--header-options  h2 {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #0C4160;
+}
+
 div.tl-table--header-options.items-selected h2 {
   font-size: small;
   line-height: 1.5rem;
+  color: #fff;
+  padding-left: 1rem;
 }
 
 div.tl-table--header-options-icons span{

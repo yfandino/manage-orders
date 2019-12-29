@@ -19,14 +19,4 @@ html {
   margin: 0;
   padding: 0;
 }
-
-/* Formulario añadir */
-form {
-  display: flex;
-  margin: 16px 48px;
-  justify-content: space-between;
-}
-.form-control {
-  display: flex;
-  flex-direction: column;
-}
+/*#071330*/

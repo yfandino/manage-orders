@@ -1,0 +1,53 @@
+/* Formulario añadir */
+.form-container {
+  width: 90%;
+  margin: 16px auto 0;
+}
+
+.form-container h2 {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #0C4160;
+}
+
+.form-container > form {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 16px 0;
+  justify-content: space-between;
+}
+
+.form-container .form-control {
+  display: flex;
+  flex-direction: column-reverse;
+  width: 12%;
+  min-width: 8rem;
+}
+
+.form-container .form-control > input  {
+  border: none;
+  border-bottom: 1px solid #C7C7C7;
+  height: 1.5rem;
+  width: 100%;
+}
+
+.form-container .form-control > input:focus  {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #0C4160;
+}
+
+.form-container .form-control > label  {
+  font-size: small;
+  color: #C7C7C7;
+}
+
+.form-container .form-control > input:focus + label {
+  color: #0C4160;
+}
+
+/* @media screen and (max-width: 1600px) {
+  .form-container .form-control > input  {
+    min-width: 4rem;
+  }
+} */
