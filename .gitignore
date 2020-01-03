@@ -3,6 +3,8 @@ node_modules
 dist
 build
 .firebaserc
+.firebase
 firebase-debug.log
 src/firebase/config.js
 public
+*.png

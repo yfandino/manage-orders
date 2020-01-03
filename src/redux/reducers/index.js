@@ -1,4 +1,4 @@
-import { PHONE_PARTS_TYPES, ORDERS_LOADED } from '../constants';
+import { PHONE_PARTS_TYPES, ORDERS_LOADED, LOGIN } from '../constants';
 
 const initialState = {
   orders: []
@@ -7,6 +7,10 @@ const initialState = {
 function rootReducer (state = initialState, action) {
   const { type, payload } = action;
   switch(type) {
+    case LOGIN.SUCCESS:
+      return Object.assign({}, state, {
+        user: payload
+      });
     case ORDERS_LOADED:
       return Object.assign({}, state, {
         orders: state.orders.concat(payload)

@@ -1,14 +1,30 @@
-import React from 'react';
-import AddForm from './AddForm';
-import List from './List';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { Switch, Route } from 'react-router-dom';
+import PhonePartsScreen from '../components/Screens/PhonePartsScreen';
+import LoginScreen from '../components/Screens/LoginScreen';
+import { session } from '../redux/actions';
 
-const App = () => {
+const App = ({ user, session }) => {
+  
+  useEffect(() => {
+    session();
+  },[]);
+
+  if (!user) return <LoginScreen />
+
   return (
-      <React.Fragment>
-        <AddForm />
-        <List title="Piezas pedidas pendientes" />
-      </React.Fragment>
+    <div id="main">
+      <Switch>
+        <Route path="/login" component={LoginScreen} />
+        <Route exact path="/" component={PhonePartsScreen} />
+      </Switch>
+    </div>
   );
 }
 
-export default App;
+const mapStateToProps = state => ({
+  user: state.user
+})
+
+export default connect(mapStateToProps, { session })(App);

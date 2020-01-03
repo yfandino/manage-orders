@@ -1,6 +1,13 @@
-export const ORDERS_REQUESTED        = "ORDERS_REQUESTED";
-export const ORDERS_LOADED           = "ORDERS_LOADED";
-export const API_ERRORED             = "API_ERRORED";
+export const ORDERS_REQUESTED = "ORDERS_REQUESTED";
+export const ORDERS_LOADED    = "ORDERS_LOADED";
+export const API_ERRORED      = "API_ERRORED";
+
+export const LOGIN = {
+  REQUESTED: "LOGIN_REQUESTED",
+  SUCCESS: "LOGIN_SUCCESS",
+  SESSION: "LOGIN_SESSION",
+  ERROR: "LOGIN_ERROR"
+}
 
 export const PHONE_PARTS_TYPES = {
   ADD_STORE: "ADD_TO_STORE",
