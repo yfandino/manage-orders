@@ -1,4 +1,4 @@
-import { PHONE_PARTS_TYPES, ORDERS_LOADED, LOGIN } from '../constants';
+import { PHONE_PARTS_TYPES, ORDERS_LOADED, SESSION } from '../constants';
 
 const initialState = {
   orders: []
@@ -7,9 +7,13 @@ const initialState = {
 function rootReducer (state = initialState, action) {
   const { type, payload } = action;
   switch(type) {
-    case LOGIN.SUCCESS:
+    case SESSION.SUCCESS:
       return Object.assign({}, state, {
         user: payload
+      });
+    case SESSION.EXIT:
+      return Object.assign({}, state, {
+        user: null
       });
     case ORDERS_LOADED:
       return Object.assign({}, state, {

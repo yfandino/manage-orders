@@ -1,4 +1,4 @@
-import { PHONE_PARTS_TYPES, ORDERS_REQUESTED, LOGIN } from '../constants';
+import { PHONE_PARTS_TYPES, ORDERS_REQUESTED, SESSION } from '../constants';
 
 // Action creators
 export function addPhonePart(payload) {
@@ -21,13 +21,19 @@ export function getPendingParts() {
 
 export function login(payload) {
   return { 
-    type: LOGIN.REQUESTED,
+    type: SESSION.LOGIN,
     payload
+  };
+}
+
+export function logout() {
+  return { 
+    type: SESSION.LOGOUT
   };
 }
 
 export function session() {
   return { 
-    type: LOGIN.SESSION,
+    type: SESSION.REQUESTED,
   };
 }
