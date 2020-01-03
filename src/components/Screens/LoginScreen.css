@@ -29,16 +29,6 @@
   text-align: center;
 }
 
-.login-container form button {
-  display: block;
-  padding: 0.5rem 0;
-  width: 24rem;
-  margin: 2rem auto 0 auto;
-  background-color: #0C4160;
-  color: #fff;
-  border: none;
-}
-
 /*Form Control*/
 .form-control {
   display: flex;
