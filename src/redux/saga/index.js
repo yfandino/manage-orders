@@ -21,8 +21,13 @@ function* workerSession() {
   }
 }
 
-function checkSession() {
-  return firebase.auth().onAuthStateChanged( user => user);
+async function checkSession() {
+  return new Promise( (resolve, reject) => {
+    firebase.auth().onAuthStateChanged( user => {
+      if(user) resolve(getUserInfo(user))
+      else reject('Session not found')
+    })
+  });
 }
 
 /* LOGIN */
@@ -41,8 +46,16 @@ function doLogin(payload) {
     .then(
       () => firebase.auth()
         .signInWithEmailAndPassword(payload.email, payload.password)
-        .then( user => console.log(user))
+        .then( uInfo => getUserInfo(uInfo.user))
     )
+}
+
+function getUserInfo(user) {
+  return firebase.firestore()
+    .collection('users')
+    .doc(user.uid)
+    .get()
+    .then( doc => ({ displayName: user.email, role: doc.get('role') }))
 }
 
 /* LOGOUT */

@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { connect } from 'react-redux';
-import { login } from '../../redux/actions'
+import { login } from '../../redux/actions';
+import { AuthContext } from '../Auth';
 import './LoginScreen.css';
-// import LoginImg from '../../../assets/login.png';
+import { Redirect } from 'react-router-dom';
 
 const LoginScreen = ({ login }) => {
   const [state, setState] = useState({});
-
+  const { user } = useContext(AuthContext);
+  
   const onSubmit = (e) => {
     e.preventDefault();
     login(state);
@@ -15,6 +17,8 @@ const LoginScreen = ({ login }) => {
   const onChange = (event) => {
     setState({...state, [event.target.id]: event.target.value});
   }
+
+  if (user) return <Redirect to="/" />;
 
   return (
     <div className="login-container">

@@ -1,7 +1,9 @@
 import { PHONE_PARTS_TYPES, ORDERS_LOADED, SESSION } from '../constants';
 
 const initialState = {
-  orders: []
+  orders: [],
+  isAuthenticated: false,
+  isVerifying: true
 }
 
 function rootReducer (state = initialState, action) {
@@ -9,15 +11,23 @@ function rootReducer (state = initialState, action) {
   switch(type) {
     case SESSION.SUCCESS:
       return Object.assign({}, state, {
-        user: payload
+        user: payload,
+        isVerifying: false,
+        isAuthenticated: true
       });
     case SESSION.EXIT:
       return Object.assign({}, state, {
-        user: null
+        user: null,
+        orders: [],
+        isAuthenticated: false
       });
+    case SESSION.ERROR:
+    return Object.assign({}, state, {
+      isVerifying: false
+    });
     case ORDERS_LOADED:
       return Object.assign({}, state, {
-        orders: state.orders.concat(payload)
+        orders: payload
       });
     case PHONE_PARTS_TYPES.ADD_STORE:
       return Object.assign({}, state, {

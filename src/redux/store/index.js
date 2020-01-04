@@ -15,5 +15,6 @@ const store = createStore(
 );
 
 initSagaMiddleware.run(apiSaga);
+store.dispatch({ type: "SESSION_REQUESTED" });
 
 export default store;

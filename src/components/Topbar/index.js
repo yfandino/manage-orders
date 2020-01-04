@@ -1,10 +1,13 @@
-import React from 'react';
-import { Redirect } from 'react-router-dom';
+import React, { useContext } from 'react';
 import { connect } from 'react-redux';
 import { logout } from '../../redux/actions';
+import { AuthContext } from '../Auth';
 import './Topbar.css';
 
-const Topbar = ({ user, logout }) => {
+const Topbar = ({ logout }) => {
+
+  const { user } = useContext(AuthContext);
+  
   return (
     <div className="topbar">
       <span>{user.displayName}</span>
