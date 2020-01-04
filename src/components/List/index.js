@@ -10,7 +10,7 @@ const List = ({ orders, getPendingParts, deletePhonePart }) => {
   }, []);
   
   const headers = [
-    { name: "Código Nuuvola", key: "nuuvola" },
+    { name: "Nuuvola", key: "nuuvola" },
     { name: "Código", key: "code" },
     { name: "Marca", key: "brand" },
     { name: "Modelo", key: "model" },
@@ -22,7 +22,7 @@ const List = ({ orders, getPendingParts, deletePhonePart }) => {
   return (
     orders && (
       <Table 
-        title="Pedidos pendientes"
+        title="Piezas pendientes"
         headers={headers} 
         rows={orders}
         onDelete={deletePhonePart}

@@ -2,12 +2,19 @@
 div.tl-table--container {
   display: flex;
   flex-direction: column;
-  width: 90%;
-  margin: 3rem auto;
+  background-color: #fff;
+  margin: 3rem 2rem;
+  border-radius: 0.25rem;
+  box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
 }
 
 table.tl-table {
   border-collapse: collapse;
+}
+
+.tl-table-empty {
+  padding: 1rem;
+  text-align: center;
 }
 
 /*Header*/
@@ -27,14 +34,14 @@ div.tl-table--header-options.items-selected {
 div.tl-table--header-options  h2 {
   font-size: 1rem;
   font-weight: 400;
+  line-height: 1.5rem;
   color: #0C4160;
+  padding-left: 1rem;
 }
 
 div.tl-table--header-options.items-selected h2 {
   font-size: small;
-  line-height: 1.5rem;
   color: #fff;
-  padding-left: 1rem;
 }
 
 div.tl-table--header-options-icons span{

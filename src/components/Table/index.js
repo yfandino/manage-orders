@@ -26,7 +26,7 @@ const Table = ( { title, headers, rows, onDelete }) => {
     return (
       <div className="tl-table--container">
         <HeaderOptions title={title} rowCount={rowsSelected.length} onDelete={deleteRows} />
-        <div>No hay pedidos pendientes</div>
+        <div className="tl-table-empty">No hay pedidos pendientes</div>
       </div>
     )
   }
