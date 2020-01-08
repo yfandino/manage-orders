@@ -1,22 +1,25 @@
-import { PHONE_PARTS_TYPES, ORDERS_REQUESTED, SESSION } from '../constants';
+import { DATA, SESSION } from '../constants';
 
 // Action creators
 export function addPhonePart(payload) {
   return {
-    type: PHONE_PARTS_TYPES.ADD_DB,
+    type: DATA.ADD_DB,
     payload
   }
 }
 
 export function deletePhonePart(payload) {
   return {
-    type: PHONE_PARTS_TYPES.DELETE_DB,
+    type: DATA.DELETE_DB,
     payload
   }
 }
 
-export function getPendingParts() {
-  return { type: ORDERS_REQUESTED };
+export function getOrders(status) {
+  return { 
+    type: DATA.REQUESTED, 
+    status 
+  };
 }
 
 export function login(payload) {
