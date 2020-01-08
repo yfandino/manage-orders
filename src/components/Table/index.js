@@ -3,7 +3,7 @@ import HeaderOptions from './components/HeaderOptions';
 import CheckboxCell from './components/CheckboxCell';
 import './Table.css';
 
-const Table = ( { title, headers, rows, onDelete }) => {
+const Table = ({ title, headers, rows, onDelete }) => {
 
   const [rowsSelected, setRowsSelected] = useState([]);
   

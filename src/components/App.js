@@ -6,6 +6,7 @@ import LoginScreen from './Screens/LoginScreen';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 import { AuthProvider } from './Auth';
+import { Loading } from './common';
 
 const AuthRoutes = ({ isAuthenticated }) => {
 
@@ -25,16 +26,16 @@ const AuthRoutes = ({ isAuthenticated }) => {
   );
 }
 
-const App = ({ isVerifying, isAuthenticated, user }) => {
+const App = ({ session }) => {
   
-  if (isVerifying) return <div>Loading</div>
+  if (session.isVerifying) return <Loading />
 
   return (
-    <AuthProvider user={user}>
+    <AuthProvider user={session.user}>
       <Router>
         <Switch>
           <Route exact path="/login" component={LoginScreen} />
-          <Route render={ props => <AuthRoutes isAuthenticated={isAuthenticated} />} />
+          <Route render={ props => <AuthRoutes isAuthenticated={session.isAuthenticated} {...props} />} />
         </Switch>
       </Router>
     </AuthProvider>
@@ -42,9 +43,7 @@ const App = ({ isVerifying, isAuthenticated, user }) => {
 }
 
 const mapStateToProps = state => ({
-  isVerifying: state.isVerifying,
-  isAuthenticated: state.isAuthenticated,
-  user: state.user
+  session: state.session
 })
 
 export default connect(mapStateToProps)(App);

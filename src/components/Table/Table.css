@@ -2,6 +2,7 @@
 div.tl-table--container {
   display: flex;
   flex-direction: column;
+  min-width: 900px;
   background-color: #fff;
   margin: 3rem 2rem;
   border-radius: 0.25rem;

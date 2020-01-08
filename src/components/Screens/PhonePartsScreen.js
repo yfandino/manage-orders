@@ -5,7 +5,7 @@ import List from '../List';
 const PhonePartsScreen = () => {
   return (
     <div>
-      <AddForm />
+      <h2>Pedidos Lopez de Hoyos</h2>
       <List title="Piezas pedidas pendientes" />
     </div>
   );

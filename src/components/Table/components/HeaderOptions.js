@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FaTrash, FaEdit } from 'react-icons/fa';
 
 const HeaderOptions = ({ title, rowCount, onEdit, onDelete }) => {
+
   return(
     <div className={`tl-table--header-options ${rowCount ? 'items-selected': ""}`}>
       <h2>{rowCount ? `${rowCount} items seleccionados` : title}</h2>
