@@ -30,14 +30,14 @@
 }
 
 /*Form Control*/
-.form-control {
+/* .form-control {
   display: flex;
   flex-direction: column-reverse;
   width: 12%;
   min-width: 24rem;
   margin: 0 auto 1rem auto;
   text-align: left;
-}
+} */
 
 .form-control > input  {
   border: none;
