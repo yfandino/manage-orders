@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaTrash, FaEdit } from 'react-icons/fa';
 
-const HeaderOptions = ({ title, rowCount, onEdit, onDelete }) => {
+const HeaderOptions = ({ title, rowCount, onEdit, onDelete, actionButton }) => {
 
   return(
     <div className={`tl-table--header-options ${rowCount ? 'items-selected': ""}`}>
@@ -9,9 +9,14 @@ const HeaderOptions = ({ title, rowCount, onEdit, onDelete }) => {
       <div className="tl-table--header-options-icons">
       { rowCount > 0 && (
         <div>
+          <div>
           <span><FaEdit /></span>
           <span><FaTrash onClick={onDelete}/></span>
-        </div>  
+          </div>
+          {actionButton && (
+            <div><button className="btn reversed" onClick={actionButton}>Solicitar</button></div>
+          )}
+        </div>
       )}
       </div>
     </div>

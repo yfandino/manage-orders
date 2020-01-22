@@ -20,6 +20,11 @@ function dataReducer(state = initialState, action) {
       return Object.assign({}, state, {
         orders: state.orders.filter( order => !payload.includes(order.id))
       });
+    case DATA.INVALID_DATA: {
+      return Object.assign({}, state, {
+        error: { invalidData: payload }
+      });
+    }
     default:
       return state;
   }

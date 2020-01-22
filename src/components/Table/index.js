@@ -3,7 +3,7 @@ import HeaderOptions from './components/HeaderOptions';
 import CheckboxCell from './components/CheckboxCell';
 import './Table.css';
 
-const Table = ({ title, headers, rows, onDelete }) => {
+const Table = ({ title, headers, actionButton, rows, onDelete }) => {
 
   const [rowsSelected, setRowsSelected] = useState([]);
   
@@ -25,7 +25,11 @@ const Table = ({ title, headers, rows, onDelete }) => {
   if (!rows.length) {
     return (
       <div className="tl-table--container">
-        <HeaderOptions title={title} rowCount={rowsSelected.length} onDelete={deleteRows} />
+        <HeaderOptions 
+          title={title}
+          rowCount={rowsSelected.length}
+          onDelete={deleteRows}
+        />
         <div className="tl-table-empty">No hay pedidos pendientes</div>
       </div>
     )
@@ -33,7 +37,12 @@ const Table = ({ title, headers, rows, onDelete }) => {
 
   return (
     <div className="tl-table--container">
-      <HeaderOptions title={title} rowCount={rowsSelected.length} onDelete={deleteRows} />
+      <HeaderOptions 
+        title={title}
+        rowCount={rowsSelected.length}
+        onDelete={deleteRows}
+        actionButton={ actionButton ? () => actionButton(rowsSelected) : undefined}
+      />
       <table className="tl-table">
         <thead>
           <tr className="tl-table--row-header">

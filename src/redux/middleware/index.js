@@ -4,7 +4,7 @@ const validAddOrderDataMiddleWare = ({ getState, dispatch }) => next => action =
       
   if (action.type === DATA.ADD_DB) {
     let errors = validateData(action.payload);
-    if (errors.length) return dispatch({ type: DATA.INVALID_DATA });
+    if (errors.length) return dispatch({ type: DATA.INVALID_DATA, payload: errors });
   }
 
   return next(action);

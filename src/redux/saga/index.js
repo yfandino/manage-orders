@@ -93,14 +93,14 @@ function fetchOrders(status) {
 // Add data
 function* workerAdd({ payload }) {
   try {
-    const id = yield call(addPhonePart, payload);
+    const id = yield call(addOrderLine, payload);
     yield put({ type: DATA.ADD_STORE, payload: { id, ...payload } });
   } catch (e) {
     yield put({ type: DATA.ERROR, payload: e });
   }
 }
 
-function addPhonePart(payload) {
+function addOrderLine(payload) {
   return firebase.firestore()
     .collection("phone-parts")
     .add(payload)

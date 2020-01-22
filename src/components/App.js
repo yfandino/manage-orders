@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
-import PhonePartsScreen from './Screens/PhonePartsScreen';
+import OrderLineListScreen from './Screens/OrderLineListScreen';
+import OrderListScreen from './Screens/OrderListScreen';
 import LoginScreen from './Screens/LoginScreen';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
@@ -15,13 +16,14 @@ const AuthRoutes = ({ isAuthenticated }) => {
   return (
     <React.Fragment>
       <Sidebar />
-      <div id="main">
+      <main id="main">
         <Topbar />
         <Switch>
           <Route exact path="/calc" render={() => "oka k ase"} />
-          <Route exact path="/" component={PhonePartsScreen} />
+          <Route exact path="/orders" component={OrderListScreen} />
+          <Route exact path="/" component={OrderLineListScreen} />
         </Switch>
-      </div>
+      </main>
     </React.Fragment>
   );
 }

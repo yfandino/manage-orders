@@ -1,21 +1,21 @@
 import { DATA, SESSION } from '../constants';
 
 // Action creators
-export function addPhonePart(payload) {
+export function addOrderLine(payload) {
   return {
     type: DATA.ADD_DB,
     payload
   }
 }
 
-export function deletePhonePart(payload) {
+export function deleteOrderLine(payload) {
   return {
     type: DATA.DELETE_DB,
     payload
   }
 }
 
-export function getOrders(status) {
+export function getOrderLines(status) {
   return { 
     type: DATA.REQUESTED, 
     status 
