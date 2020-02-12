@@ -1,12 +1,11 @@
 import { DATA } from '../constants';
 
 const validAddOrderDataMiddleWare = ({ getState, dispatch }) => next => action => {
-      
-  if (action.type === DATA.ADD_DB) {
-    let errors = validateData(action.payload);
+  if (action.type === DATA.ADD_ORDERLINE_DB && action.table === 'order-lines') {
+    let errors = validateData(action.data);
+    if (errors.length) console.error(errors)
     if (errors.length) return dispatch({ type: DATA.INVALID_DATA, payload: errors });
   }
-
   return next(action);
 }
 

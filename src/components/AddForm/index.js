@@ -1,11 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { addOrderLine } from '../../redux/actions';
+import { add } from '../../redux/actions';
 import { brands, models, stores } from './data';
 import { AuthContext } from '../Auth';
 import './AddForm.css';
 
-const AddForm = ({ addOrderLine, clearErrors, invalidDataError, onClose }) => {
+const AddForm = ({ add, clearErrors, invalidDataError, onClose }) => {
   const today = new Date();
   const tomorrow = new Date(today);
   tomorrow.setDate(tomorrow.getDate() + 1);
@@ -33,12 +33,12 @@ const AddForm = ({ addOrderLine, clearErrors, invalidDataError, onClose }) => {
   }, [])
   
   const onChange = (event) => {
-    setState({...state, [event.target.id]: event.target.value.toUpperCase()});
+    setState({...state, [event.target.id]: event.target.value});
   }
 
   const onSubmit = (e) => {
     e.preventDefault();
-    addOrderLine(state);
+    add(state);
     setState(initState);
   }
 
@@ -121,7 +121,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return { 
-    addOrderLine: order => dispatch(addOrderLine(order)),
+    add: order => dispatch(add({ table: "order-lines", data: order })),
     clearErrors: () => dispatch({ type: 'INVALID_DATA', payload: [] })
   }
 }

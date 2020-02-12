@@ -1,14 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { FaPlus } from 'react-icons/fa'
-import { getOrderLines } from '../../redux/actions';
+import { getData } from '../../redux/actions';
 import { AuthContext } from '../Auth';
 import Table from '../Table';
 import DropdownWithAction from '../common/DropdrownWithAction';
 import AddForm from '../AddForm';
 import './Screens.css';
 
-const OrderListScreen = ({ orders, getOrderLines }) => {
+const OrderListScreen = ({ orders, getData }) => {
 
   const [open, setOpen] = useState(false)
 
@@ -16,38 +15,30 @@ const OrderListScreen = ({ orders, getOrderLines }) => {
   const hasPermission = ["admin", "manager"].includes(user.role);
 
   useEffect( () => {
-    getOrderLines('pending');
+    getData('requested');
   }, []);
 
   const headers = [
-    { name: "Nuuvola", key: "nuuvola" },
-    { name: "Código", key: "code" },
-    { name: "Marca", key: "brand" },
-    { name: "Modelo", key: "model" },
-    { name: "Descripción", key: "description" },
-    { name: "Cantidad", key: "qty" },
-    { name: "Fecha", key: "date" }
+    { name: "Nº de documento", key: "docId" },
+    { name: "Fecha", key: "createdAt" }
   ];
 
   const titleActions = [
-    { action: 'pending', title: "En camino" }, 
+    { action: 'requested', title: "En camino" }, 
     { action: "completed", title: "Entregado" }
   ];
 
   // if (error) alert(error)
-
+  
   return (
     <div className="main-content">
       { open && (<AddForm onClose={() => setOpen(false)} />)}
       <div className="main-content--header">
         <h1>Pedidos Lopez de Hoyos</h1>
-        <button className="btn ghost" onClick={() => setOpen(true)}>
-          <span>Añadir</span><FaPlus />
-        </button>
       </div>
       {orders && (
         <Table 
-          title={<DropdownWithAction items={titleActions} onChange={getOrderLines} />}
+          title={<DropdownWithAction items={titleActions} onChange={getData} />}
           headers={headers} 
           rows={orders}
           onDelete={() => console.log('delete')}
@@ -64,4 +55,10 @@ const mapStateToProps = state => {
   };
 }
 
-export default connect(mapStateToProps, { getOrderLines })(OrderListScreen);
+const mapDispatchToProps = dispatch => {
+  return {
+    getData: status => dispatch(getData({ table: "orders", status }))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(OrderListScreen);

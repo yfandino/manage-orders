@@ -22,9 +22,10 @@ function sessionReducer (state = initialState, action) {
         isAuthenticated: false
       });
     case SESSION.ERROR:
-    return Object.assign({}, state, {
-      isVerifying: false
-    });
+      console.error(SESSION.ERROR, action);
+      return Object.assign({}, state, {
+        isVerifying: false
+      });
     default:
       return state;
   }

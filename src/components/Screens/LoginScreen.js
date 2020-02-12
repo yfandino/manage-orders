@@ -25,14 +25,14 @@ const LoginScreen = ({ login }) => {
       <div>
         <img src="../../../assets/login.png" />
       </div>
-      <form autoComplete="off" onSubmit={onSubmit}>
+      <form onSubmit={onSubmit}>
         <h2>Inicio de sesión</h2>
         <div className="form-control">
-          <input id="email" type="text" value={state.nuuvola} onChange={onChange} />
+          <input id="email" type="text" value={state.nuuvola} onChange={onChange} autoComplete="username"/>
           <label htmlFor="email">Correo Electrónico</label>
         </div>
         <div className="form-control">
-          <input id="password" type="password" value={state.nuuvola} onChange={onChange} />
+          <input id="password" type="password" value={state.nuuvola} onChange={onChange} autoComplete="current-password" />
           <label htmlFor="password">Contraseña</label>
         </div>
         <button type="submit">Entrar</button>

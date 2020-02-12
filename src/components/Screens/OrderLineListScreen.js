@@ -1,24 +1,25 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { FaPlus } from 'react-icons/fa'
 import { connect } from 'react-redux';
-import { getOrderLines, deleteOrderLine } from '../../redux/actions';
+import { getData, deleteOrderLine, createOrder } from '../../redux/actions';
 import { AuthContext } from '../Auth';
 import Table from '../Table';
 import DropdownWithAction from '../common/DropdrownWithAction';
 import AddForm from '../AddForm';
 import './Screens.css';
 
-const OrderLineListScreen = ({ orders, error, getOrderLines, deleteOrderLine }) => {
+const OrderLineListScreen = ({ requestLines, orderLines, error, getData, deleteOrderLine }) => {
 
   const [open, setOpen] = useState(false);
   const { user } = useContext(AuthContext);
   const hasPermission = ["admin", "manager"].includes(user.role);
 
   useEffect( () => {
-    getOrderLines('pending');
+    getData('pending');
   }, []);
 
   const headers = [
+    { name: "Proveedor", key: "store" },
     { name: "Nuuvola", key: "nuuvola" },
     { name: "Código", key: "code" },
     { name: "Marca", key: "brand" },
@@ -35,7 +36,13 @@ const OrderLineListScreen = ({ orders, error, getOrderLines, deleteOrderLine }) 
   ];
 
   const markAsRequested = (selected) => {
-    console.log(selected)
+    let order = {
+      orderLines: selected,
+      status: 'requested',
+      createdAt: new Date().toISOString(),
+      createdBy: user.displayName
+    }
+    requestLines(order);
   }
 
   if (error) alert(error)
@@ -49,11 +56,11 @@ const OrderLineListScreen = ({ orders, error, getOrderLines, deleteOrderLine }) 
           <span>Añadir</span><FaPlus />
         </button>
       </div>
-      {orders && (
+      {orderLines && (
         <Table 
-          title={<DropdownWithAction items={titleActions} onChange={getOrderLines} />}
+          title={<DropdownWithAction items={titleActions} onChange={getData} />}
           headers={headers} 
-          rows={orders}
+          rows={orderLines}
           onDelete={deleteOrderLine}
           actionButton={hasPermission ? markAsRequested : null}
         />
@@ -64,9 +71,17 @@ const OrderLineListScreen = ({ orders, error, getOrderLines, deleteOrderLine }) 
 
 const mapStateToProps = state => {
   return { 
-    orders: state.data.orders,
+    orderLines: state.data.orderLines,
     error: state.error
   };
 }
 
-export default connect(mapStateToProps, { getOrderLines, deleteOrderLine })(OrderLineListScreen);;
+const mapDispatchToProps = dispatch => {
+  return { 
+    requestLines: order => dispatch(createOrder(order)),
+    getData: status => dispatch(getData({ table: "order-lines", status })),
+    deleteOrderLine: ids => dispatch(deleteOrderLine(ids))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(OrderLineListScreen);

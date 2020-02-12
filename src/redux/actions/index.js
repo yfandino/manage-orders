@@ -1,11 +1,27 @@
 import { DATA, SESSION } from '../constants';
 
 // Action creators
-export function addOrderLine(payload) {
+export function add({ table, data }) {
   return {
-    type: DATA.ADD_DB,
+    type: DATA.ADD_ORDERLINE_DB,
+    table,
+    data
+  }
+}
+
+export function createOrder(payload) {
+  return {
+    type: DATA.ADD_ORDER_DB,
     payload
   }
+}
+
+export function getData({ table, status }) {
+  return { 
+    type: DATA.REQUESTED,
+    table,
+    status
+  };
 }
 
 export function deleteOrderLine(payload) {
@@ -13,13 +29,6 @@ export function deleteOrderLine(payload) {
     type: DATA.DELETE_DB,
     payload
   }
-}
-
-export function getOrderLines(status) {
-  return { 
-    type: DATA.REQUESTED, 
-    status 
-  };
 }
 
 export function login(payload) {
